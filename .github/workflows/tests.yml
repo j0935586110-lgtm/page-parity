@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: L1 checks need no dependencies
+        run: |
+          python3 bin/page-parity --help
+          python3 bin/page-parity --self-test
+
+      - name: examples/clean must be clean (exit 0)
+        run: python3 bin/page-parity check --dir examples/clean
+
+      - name: examples/broken must be detected (exit 1)
+        run: |
+          set +e
+          python3 bin/page-parity check --dir examples/broken
+          rc=$?
+          set -e
+          test "$rc" -eq 1
+
+      - name: test suite
+        run: python3 tests/test_page_parity.py
