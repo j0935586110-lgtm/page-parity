@@ -1,0 +1,6 @@
+[expect_exceptions]
+  {page = "pageC.html", reason = "Standalone orphan page, intentional no inbound links"}
+
+# Optionally set scope for items (optional)
+# [checks.menu]
+#   scope = "all"

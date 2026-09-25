@@ -1,0 +1,86 @@
+# page-parity default checklist (generic - no site-specific values).
+#
+# Each [[items]] entry is one "should look the same everywhere" item.
+#   kind    = "selector" | "text" | "css_backdrop"
+#   scope   = "all" | "min:N" | "any"      (all => any page missing it is a finding)
+#   compare = "none" | "attr" | "text" | "set"
+# ---------------------------------------------------------------- consistency
+
+[[items]]
+id = "canonical"
+kind = "selector"
+selector = 'link[rel="canonical"]'
+scope = "all"
+compare = "none"
+
+[[items]]
+id = "og_title"
+kind = "selector"
+selector = 'meta[property="og:title"]'
+scope = "all"
+compare = "none"
+
+[[items]]
+id = "og_image"
+kind = "selector"
+selector = 'meta[property="og:image"]'
+scope = "all"
+compare = "none"
+
+[[items]]
+id = "viewport"
+kind = "selector"
+selector = 'meta[name="viewport"]'
+scope = "all"
+compare = "attr"
+value_attr = "content"
+
+[[items]]
+id = "favicon"
+kind = "selector"
+selector = 'link[rel~="icon"]'
+scope = "all"
+compare = "none"
+
+[[items]]
+id = "lang"
+kind = "selector"
+selector = "html[lang]"
+scope = "all"
+compare = "attr"
+value_attr = "lang"
+
+[[items]]
+id = "analytics"
+kind = "text"
+pattern = 'googletagmanager|gtag\(|google-analytics|G-[A-Z0-9]{6,}|UA-[0-9]+'
+scope = "all"
+compare = "none"
+
+[[items]]
+id = "menu_items"
+kind = "selector"
+selector = "nav a"
+scope = "all"
+compare = "set"
+
+[[items]]
+id = "footer"
+kind = "selector"
+selector = "body > footer"
+scope = "all"
+compare = "text"
+
+[[items]]
+id = "watermark"
+kind = "css_backdrop"
+scope = "all"
+compare = "none"
+
+# ---------------------------------------------------------------- exceptions
+# Deliberate per-page inconsistencies must be listed here WITH a reason so
+# they still appear in the report but do not count as failures.
+#
+# [[expect_exceptions]]
+# page = "legacy-redirect.html"
+# reason = "retired URL kept only for redirection"

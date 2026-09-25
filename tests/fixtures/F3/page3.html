@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overflow Test</title>
+    <link rel="canonical" href="https://example.com/">
+    <meta property="og:title" content="Test Site">
+    <meta property="og:image" content="https://example.com/og.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123456-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-123456-1');
+    </script>
+    <style>
+        .hero-tags {
+            width: 288px;
+            background: #eee;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .tag {
+            display: inline-block;
+            background: #ddd;
+            margin: 5px;
+            padding: 2px 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Overflow Test Page</h1>
+    </header>
+    <nav>
+        <a href="page1.html">Page 1</a>
+        <a href="page2.html">Page 2</a>
+        <a href="page3.html">Overflow</a>
+    </nav>
+    <main>
+        <div class="hero-tags">
+            <span class="tag">Tag1</span>
+            <span class="tag">Tag2</span>
+            <span class="tag">Tag3</span>
+            <span class="tag">Tag4</span>
+            <span class="tag">Tag5</span>
+            <span class="tag">Tag6</span>
+            <span class="tag">Tag7</span>
+            <span class="tag">Tag8</span>
+            <span class="tag">Tag9</span>
+            <span class="tag">Tag10</span>
+            <span class="tag">Tag11</span>
+            <span class="tag">Tag12</span>
+            <span class="tag">Tag13</span>
+            <span class="tag">Tag14</span>
+            <span class="tag">Tag15</span>
+            <!-- Many tags to cause overflow -->
+        </div>
+    </main>
+    <footer>
+        &copy; 2026 Test Site. All rights reserved.
+    </footer>
+</body>
+</html>

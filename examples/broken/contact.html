@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broken Site — Contact</title>
+  <link rel="canonical" href="https://example.com/contact.html">
+  <meta property="og:title" content="Contact — Broken Site">
+  <meta property="og:image" content="/og.png">
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    :root {
+      --primary: #cc3300;  /* DIFFERENT VALUE: other pages use #0066cc */
+      --spacing: 1rem;
+      --font-sans: system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); line-height: 1.6; }
+    .site-header { background: var(--primary); color: white; padding: var(--spacing); }
+    .site-nav { display: flex; gap: var(--spacing); }
+    .site-nav a { color: white; text-decoration: none; }
+    .site-main { padding: var(--spacing); max-width: 800px; margin: 0 auto; }
+    .site-footer { background: #f5f5f5; padding: var(--spacing); text-align: center; font-size: 0.875rem; }
+    .watermark { opacity: 0.1; position: fixed; bottom: 1rem; right: 1rem; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+  <main class="site-main">
+    <h1>Contact Us</h1>
+    <p>This page has a DIFFERENT --primary value (#cc3300 vs #0066cc).</p>
+    <p>It is also an ORPHAN: no other page links to it.</p>
+  </main>
+  <footer class="site-footer">
+    <p>© 2025 Broken Site. All rights reserved.</p>
+  </footer>
+  <div class="watermark">BROKEN</div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+</body>
+</html>

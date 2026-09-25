@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Site</title>
+    <link rel="canonical" href="https://example.com/">
+    <meta property="og:title" content="Test Site">
+    <meta property="og:image" content="https://example.com/og.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123456-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-123456-1');
+    </script>
+    <style>
+        :root {
+            --brand-color: #123456;
+            --gap: 1rem;
+        }
+        body { margin: 0; font-family: sans-serif; }
+        header { background: var(--brand-color); color: white; padding: 1rem; }
+        nav { background: #f0f0f0; padding: 1rem; }
+        nav a { margin-right: 1rem; text-decoration: none; color: #000; }
+        footer { text-align: center; padding: 1rem; margin-top: 2rem; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main>
+        <p>Home page content.</p>
+    </main>
+    <footer>
+        &copy; 2026 Test Site. All rights reserved.
+    </footer>
+</body>
+</html>

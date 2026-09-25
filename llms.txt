@@ -1,0 +1,19 @@
+page-parity — cross-page consistency + layout overflow auditor for static sites.
+
+Run: `page-parity check --dir <site-dir> [--l1|--l2] [--only a1,a2,a3] [--widths 320,768] [--format json|human|both]`
+
+Output (stdout, single-line JSON):
+{"verdict":"ok|findings|indeterminate|usage|internal","exit_reason":"OK|FINDINGS|INDETERMINATE|USAGE|INTERNAL","codes":["MISSING_ON_PAGE","VALUE_DRIFT","ORPHAN_PAGE","ABSENT_EVERYWHERE","CSR_SHELL_DETECTED","ENCODING_UNCERTAIN","ELEMENT_OVERFLOW","PAGE_OVERFLOW","FIXED_OBSCURES","PARSE_ERROR","NO_BROWSER"],"counts":{"pages":N,"findings":M,"advisories":K},"details_url":"file:///tmp/..."}
+
+Human summary on stderr (≤3 sentences).
+
+Exit codes: 0=OK, 1=FINDINGS, 2=INDETERMINATE, 3=USAGE, 4=INTERNAL.
+
+L1 (stdlib, ~2s/17 pages): required elements, CSS var drift, orphan pages.
+L2 (Playwright, ~3min/17p×7w): page & element overflow at 320–1440px, fixed obscuring interactive.
+
+Config: page-parity.toml with [[items]] (scope: all|min:N|any, kind: selector|text|css_backdrop, compare: none|attr|text|set) and [[expect_exceptions]] (page, reason required).
+
+DO NOT use for: pixel regression (Playwright/BackstopJS), semantic diff (qain), CI deploy gate.
+
+Supports: SSG/SSR static HTML only. No JS execution, no SPA routes. Clean URLs supported. Cookie banners = advisory (FIXED_OBSCURES). ABSENT_EVERYWHERE, CSR_SHELL_DETECTED, ENCODING_UNCERTAIN = advisory only.
