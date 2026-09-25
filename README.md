@@ -20,7 +20,9 @@ pipx install page-parity
 # or: uv tool install page-parity
 ```
 
-Requires Python 3.11+. L2 (overflow) needs Playwright (`playwright install chromium`).
+Requires Python 3.11+ (on 3.9 / 3.10 everything works too, except that reading a
+`page-parity.toml` config then needs `pip install tomli`; the built-in checklist needs no
+dependency). L2 (overflow) needs Playwright (`playwright install chromium`).
 
 ---
 

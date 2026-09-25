@@ -8,7 +8,20 @@ no page name, brand or site-specific literal is ever embedded in code.
 from __future__ import annotations
 
 import os
-import tomllib
+
+try:  # Python 3.11+
+    import tomllib as _tomllib
+except ModuleNotFoundError:  # pragma: no cover
+    try:
+        import tomli as _tomllib  # type: ignore
+    except ModuleNotFoundError:
+        _tomllib = None
+
+
+class TomlUnavailable(RuntimeError):
+    """No TOML parser: Python < 3.11 without tomli installed."""
+
+
 
 DEFAULT_ITEMS = [
     {"id": "canonical", "kind": "selector", "selector": 'link[rel="canonical"]',
@@ -88,8 +101,12 @@ def load(path=None):
                                    "page-parity.toml"))
     for cand in candidates:
         if cand and os.path.isfile(cand):
+            if _tomllib is None:
+                raise TomlUnavailable(
+                    "cannot read %s: reading a config file needs Python 3.11+ or `pip install tomli`; "
+                    "the built-in checklist needs no dependency" % cand)
             with open(cand, "rb") as fh:
-                data = tomllib.load(fh)
+                data = _tomllib.load(fh)
             return from_mapping(data, os.path.abspath(cand))
     if argv_config:
         raise FileNotFoundError("config not found: %s" % argv_config)
